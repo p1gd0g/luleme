@@ -58,6 +58,14 @@ flutter build apk --release
 flutter build appbundle --release
 ```
 
+## Google Play 发布
+
+如需发布到 Google Play，请查看 [play_store](./play_store/) 目录：
+- [发布检查清单](./play_store/PUBLISHING_CHECKLIST.md)
+- [签名配置指南](./play_store/SIGNING_GUIDE.md)
+- [截图指南](./play_store/screenshots/SCREENSHOT_GUIDE.md)
+- [商店列表详情](./play_store/metadata/store_listing_details.md)
+
 ## 开发
 
 ### 运行应用
