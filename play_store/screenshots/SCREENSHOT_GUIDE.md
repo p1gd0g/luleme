@@ -201,10 +201,11 @@ adb pull /sdcard/Pictures/Screenshots/<filename>.png ./
 ### 方法3：使用 ADB 命令
 
 ```bash
-# 在应用运行时，使用 adb 截图
-adb shell screencap -p /sdcard/screenshot.png
-adb pull /sdcard/screenshot.png ./screenshots/phone/
-adb shell rm /sdcard/screenshot.png
+# 在应用运行时，使用 adb 截图（使用时间戳避免覆盖）
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+adb shell screencap -p /sdcard/screenshot_${TIMESTAMP}.png
+adb pull /sdcard/screenshot_${TIMESTAMP}.png ./screenshots/phone/
+adb shell rm /sdcard/screenshot_${TIMESTAMP}.png
 ```
 
 ## 截图后处理

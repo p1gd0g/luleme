@@ -58,13 +58,14 @@ storeFile=/home/你的用户名/upload-keystore.jks
 
 **示例**：
 ```properties
-storePassword=MySecurePassword123
-keyPassword=MySecurePassword123
+storePassword=MySecureStorePassword123
+keyPassword=MySecureKeyPassword456
 keyAlias=luleme
 storeFile=/Users/username/upload-keystore.jks
 ```
 
 **安全提示**：
+- 建议使用不同的密钥库密码和密钥密码以提供额外的安全层
 - `key.properties` 文件已在 `.gitignore` 中，不会提交到 Git
 - 不要分享密钥库文件和密码
 - 将密钥库备份到安全位置（如加密的云存储）
