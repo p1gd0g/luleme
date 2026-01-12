@@ -192,10 +192,16 @@ class StatisticsScreen extends StatelessWidget {
       );
     }
 
+    // Safely calculate max Y value
+    final maxCount = dailyCounts.values.isEmpty 
+        ? 0 
+        : dailyCounts.values.reduce((a, b) => a > b ? a : b);
+    final maxY = (maxCount + 2).toDouble();
+
     return BarChart(
       BarChartData(
         alignment: BarChartAlignment.spaceAround,
-        maxY: (dailyCounts.values.reduce((a, b) => a > b ? a : b) + 2).toDouble(),
+        maxY: maxY,
         barGroups: barGroups,
         titlesData: FlTitlesData(
           leftTitles: AxisTitles(
@@ -215,10 +221,15 @@ class StatisticsScreen extends StatelessWidget {
               showTitles: true,
               getTitlesWidget: (value, meta) {
                 const days = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+                final index = value.toInt();
+                // Bounds checking
+                if (index < 0 || index >= days.length) {
+                  return const SizedBox.shrink();
+                }
                 return Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text(
-                    days[value.toInt()],
+                    days[index],
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 );

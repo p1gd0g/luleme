@@ -46,9 +46,12 @@ class EventController extends GetxController {
     String? notes,
   }) async {
     try {
+      // Create a more unique ID by combining timestamp with a random component
+      final timestamp = DateTime.now();
+      final randomSuffix = timestamp.microsecondsSinceEpoch % 10000;
       final newEvent = EventModel(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        timestamp: DateTime.now(),
+        id: '${timestamp.millisecondsSinceEpoch}_$randomSuffix',
+        timestamp: timestamp,
         durationMinutes: durationMinutes,
         feeling: feeling,
         notes: notes,
