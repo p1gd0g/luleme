@@ -2,7 +2,7 @@
 # see: https://firebase.google.com/docs/studio/customize-workspace
 { pkgs, ... }: {
   # Which nixpkgs channel to use.
-  channel = "stable-24.05"; # or "unstable"
+  channel = "unstable"; # or "unstable"
   # Use https://search.nixos.org/packages to find packages
   packages = [
     pkgs.jdk21
@@ -26,10 +26,10 @@
     previews = {
       enable = true;
       previews = {
-        web = {
-          command = ["flutter" "run" "--machine" "-d" "web-server" "--web-hostname" "0.0.0.0" "--web-port" "$PORT"];
-          manager = "flutter";
-        };
+        # web = {
+        #   command = ["flutter" "run" "--machine" "-d" "web-server" "--web-hostname" "0.0.0.0" "--web-port" "$PORT"];
+        #   manager = "flutter";
+        # };
         # android = {
         #   command = ["flutter" "run" "--machine" "-d" "android" "-d" "localhost:5555"];
         #   manager = "flutter";

@@ -12,11 +12,7 @@ class HomeScreen extends StatelessWidget {
     final EventController controller = Get.put(EventController());
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('撸了么'),
-        centerTitle: true,
-        elevation: 0,
-      ),
+      appBar: AppBar(title: const Text('撸了么'), centerTitle: true, elevation: 0),
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
@@ -43,10 +39,9 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(24),
                     boxShadow: [
                       BoxShadow(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .primary
-                            .withOpacity(0.2),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.primary.withOpacity(0.2),
                         blurRadius: 20,
                         offset: const Offset(0, 10),
                       ),
@@ -62,9 +57,8 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: 16),
                       Text(
                         '记录你的时刻',
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 24),
                       ElevatedButton(
@@ -142,12 +136,18 @@ class HomeScreen extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.surfaceContainerHighest,
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: const Column(
                           children: [
-                            Icon(Icons.analytics, size: 32, color: Colors.orange),
+                            Icon(
+                              Icons.analytics,
+                              size: 32,
+                              color: Colors.orange,
+                            ),
                             SizedBox(height: 8),
                             Text(
                               '统计',
@@ -189,8 +189,8 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     '最近记录',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   ...controller.getEventsForLastDays(7).take(5).map((event) {
@@ -199,8 +199,9 @@ class HomeScreen extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 12),
                       child: ListTile(
                         leading: CircleAvatar(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primaryContainer,
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.primaryContainer,
                           child: Icon(
                             Icons.circle,
                             color: Theme.of(context).colorScheme.primary,
@@ -215,7 +216,8 @@ class HomeScreen extends StatelessWidget {
                             : null,
                         trailing: IconButton(
                           icon: const Icon(Icons.delete_outline),
-                          onPressed: () => _showDeleteDialog(context, controller, index),
+                          onPressed: () =>
+                              _showDeleteDialog(context, controller, index),
                         ),
                       ),
                     );
@@ -289,10 +291,7 @@ class HomeScreen extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primaryContainer,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(
-                  icon,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
+                child: Icon(icon, color: Theme.of(context).colorScheme.primary),
               ),
               const SizedBox(width: 16),
               Expanded(
@@ -349,7 +348,7 @@ class HomeScreen extends StatelessWidget {
                     final rating = index + 1;
                     return IconButton(
                       icon: Icon(
-                        selectedRating != null && selectedRating >= rating
+                        selectedRating != null && selectedRating! >= rating
                             ? Icons.star
                             : Icons.star_border,
                         color: Colors.amber,
@@ -373,7 +372,9 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 controller.addEvent(
-                  notes: notesController.text.isEmpty ? null : notesController.text,
+                  notes: notesController.text.isEmpty
+                      ? null
+                      : notesController.text,
                   rating: selectedRating,
                 );
                 Navigator.pop(context);
@@ -386,7 +387,11 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  void _showDeleteDialog(BuildContext context, EventController controller, int index) {
+  void _showDeleteDialog(
+    BuildContext context,
+    EventController controller,
+    int index,
+  ) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
